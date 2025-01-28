@@ -522,11 +522,22 @@ def display_neural_networks_section():
         - The network can learn to approximate any function
         """)
 
+def add_feedback_section(section_name):
+    st.write("---")  # Add a visual separator
+    st.subheader("📝 Your Feedback")
+    st.write("Did you find this section useful?")
+    rating = st.slider(f"Rate the {section_name} section (1-5)", 1, 5, 3)
+    if st.button(f"Submit {section_name} Feedback"):
+        st.success("Thank you for your feedback! 🙏")
+
 def main():
     st.title("PyTorch for Beginners: A Comprehensive Learning Path")
     
     # Course Overview
-    with st.expander("📚 Course Overview"):
+    with st.expander("📚 Course Overview", expanded=True):
+        # Intro Video with autoplay
+        st.video("https://vid5.pluralsight.com/expiretime=1738096980/44355ad94ea481797084ce006a855e52/clips/resolution/52eb72cf-8228-4075-88c0-ed32e97e708f/versions/8e8a6b3f-a726-4bc9-9704-969563a3ccf9/webm/1280x720.webm", start_time=4)
+        
         st.write("""
         Welcome to PyTorch for Beginners! This comprehensive course will guide you through the fundamentals
         of PyTorch, one of the most popular deep learning frameworks used in industry and research.
@@ -571,14 +582,18 @@ def main():
            - Understand common use cases and applications
            - Debug and optimize PyTorch code
         """)
+        add_feedback_section("Course Overview")
     
     # Display sections in expanders
     with st.expander("🔢 Tensor Basics"):
         display_tensor_section()
+        add_feedback_section("Tensor Basics")
     with st.expander("⚡ Tensor Operations"):
         display_operations_section()
+        add_feedback_section("Tensor Operations")
     with st.expander("🧠 Neural Networks"):
         display_neural_networks_section()
+        add_feedback_section("Neural Networks")
 
 if __name__ == "__main__":
     main()
